@@ -37,6 +37,14 @@ function sendText(text) {
 // LINEトーク画面上でメッセージ送信
 function sendMessages(text) {
     console.log('in sendMessages()');
+    if (liff.isInClient()) {
+        sendMessages(text);
+    } else {
+        shareTargetPicker(text);
+    }
+}
+
+function sendMessages(text) {   
     liff.sendMessages([{
         'type': 'text',
         'text': text
@@ -55,6 +63,15 @@ function shareTargetPicker(text) {
         'text': text
     }]).catch((error) => {
         console.log(error);
+        window.alert('Failed to send message ' + error);
+    });
+}
+
+function shareTargetPicker(text) {
+    liff.shareTargetPicker([{
+        'type': 'text',
+        'text': text
+    }]).catch(function (error) {
         window.alert('Failed to send message ' + error);
     });
 }

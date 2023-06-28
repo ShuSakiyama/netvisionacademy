@@ -18,6 +18,7 @@ function initializeLiff(liffId) {
                 liff.login({redirectUri: location.href});
             }else{
                 console.log('Login Success');
+                liff.login({redirectUri: location.href});
             }
         })
         .catch((err) => {
